@@ -34,7 +34,7 @@ class BioCWriter:
     
     def _check_for_data(self):
         if self.collection is None:
-            raise(Exception('No data available.'))
+            raise Exception
     
     def write(self, filename=None):
         """ Use this method to write the data in the PyBioC objects
@@ -47,7 +47,7 @@ class BioCWriter:
             self.filename = filename
         
         if self.filename is None:
-            raise(Exception('No output file path provided.'))
+            raise Exception
             
         f = open(self.filename, 'w')
         f.write(self.__str__())
@@ -69,7 +69,7 @@ class BioCWriter:
                                 collection_elem)
         
     def _build_infons(self, infons_dict, infons_parent_elem):
-        for infon_key, infon_val in infons_dict.items():
+        for infon_key, infon_val in list(infons_dict.items()):
             infons_parent_elem.append(E('infon'))
             infon_elem = infons_parent_elem.xpath('infon')[-1]
             
